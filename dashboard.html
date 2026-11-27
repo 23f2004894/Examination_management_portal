@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% block body %}
+<div class="hero"><div class="eyebrow" style="color:#a3f1df">{{me.role|upper}} WORKSPACE</div><h1 class="mb-2">Welcome back, {{me.name.split(' ')[0]}} 👋</h1><p>Everything you need to manage examinations, bookings, and results.</p></div>
+<div class="row g-3 mb-4">{% for label,value in stats %}<div class="col-md-4 col-sm-6"><div class="card stat h-100"><div class="card-body"><div class="soft-label mb-2">{{label}}</div><div class="display-6">{{value}}</div></div></div></div>{% endfor %}</div>
+<div class="d-flex align-items-center justify-content-between gap-3 mt-4 mb-3"><div><div class="eyebrow">QUICK ACCESS</div><h4 class="mb-0">What would you like to do?</h4></div></div>
+<div class="row g-3">
+<div class="col-md-4"><div class="action-card"><div class="action-emoji">📋</div><h5>Examinations</h5><p>View exams and manage examination timelines.</p><a class="btn btn-outline-primary btn-sm" href="{{url_for('exams')}}">Open examinations</a></div></div>
+<div class="col-md-4"><div class="action-card"><div class="action-emoji">🗓️</div><h5>Examination slots</h5><p>Create or find upcoming examination time slots.</p><a class="btn btn-outline-primary btn-sm" href="{{url_for('slots')}}">View slots</a></div></div>
+<div class="col-md-4"><div class="action-card"><div class="action-emoji">🎓</div><h5>Booking records</h5><p>Review bookings, evaluations and student progress.</p><a class="btn btn-outline-primary btn-sm" href="{{url_for('my_bookings')}}">View bookings</a></div></div>
+{% if me.role=='admin' %}<div class="col-md-6"><div class="action-card"><div class="action-emoji">📚</div><h5>Course catalogue</h5><p>Add courses before creating examinations.</p><a class="btn btn-primary btn-sm" href="{{url_for('courses')}}">Manage courses</a></div></div><div class="col-md-6"><div class="action-card"><div class="action-emoji">✅</div><h5>Examiner approvals</h5><p>Approve any newly registered examiner from here.</p><a class="btn btn-primary btn-sm" href="{{url_for('admin_users')}}">Manage users & approvals</a></div></div>{% endif %}
+</div>{% endblock %}
